@@ -1,9 +1,9 @@
-# Autor
+## Autor
 
 Luis Miguel Ibarra Cano
 
-# Instalacion de paquetes
+## Instalacion de paquetes
 npm i
 
-# inicializacion de la aplicación
+## inicializacion de la aplicación
 ng serve -o
