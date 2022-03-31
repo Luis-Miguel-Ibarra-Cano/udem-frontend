@@ -5,5 +5,5 @@ Luis Miguel Ibarra Cano
 ## Instalacion de paquetes
 npm i
 
-## inicialización de la aplicación
+## Inicialización de la aplicación
 ng serve -o
