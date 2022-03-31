@@ -1,0 +1,107 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-header">
+      <div class="d-flex bd-highlight">
+        <div class="p-2 flex-grow-1 bd-highlight"> <b>PERSONAS</b> </div>
+        <div class="p-2 bd-highlight" style="font-size: 18px;">
+          <button type="button" class="btn btn-outline-secondary me-2" [attr.action]="'Añadir persona'"
+          (click)="openModal(contentModalForm, 'in')"
+          >
+            <i class="uil uil-plus-circle"></i>
+          </button>
+        </div>
+        <div class="p-2 bd-highlight">
+          <button type="button" class="btn btn-outline-secondary me-2" [attr.action]="'Refrescar lista'"
+          (click)="readAll()"
+          >
+            <i class="uil uil-sync"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th class="col-1">#</th>
+              <th class="col-2">Nombre</th>
+              <th class="col-2">Apellidos</th>
+              <th class="col-1">Documento</th>
+              <th class="col-1">Telefono</th>
+              <th class="col-2">Acciones</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="list_personas.length>0">
+            <tr *ngFor="let persona of list_personas; index as i">
+              <td>{{i+1}}</td>
+              <td>{{persona.nombres}}</td>
+              <td>{{persona.apellidos}}</td>
+              <td>{{persona.documento}}</td>
+              <td>{{persona.telefono}}</td>
+              <td>
+                <button type="button" class="btn btn-secondary"
+                (click)="read(persona)"
+                >Ver</button>
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-primary"
+                (click)="openModalUP(contentModalForm, persona, 'up')"
+                >Editar</button>
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-danger"
+                (click)="delete(persona)"
+                >Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="list_personas.length==0">
+            <tr>
+              <td colspan="6" class="text-center">No hay datos</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <!-- Modal Form -->
+  <ng-template #contentModalForm let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <button type="button" class="close" aria-label="Close" (click)="closedModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form
+      (ngSubmit)="submitForm()"
+      [formGroup]="formPersona"
+      >
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label> <b>Nombres</b> </label>
+            <input type="text" class="form-control" formControlName="nombres">
+          </div>
+          <div class="form-group col-md-6">
+            <label> <b>Apellidos</b> </label>
+            <input type="text" class="form-control" formControlName="apellidos">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label> <b>Documento</b> </label>
+            <input type="text" class="form-control" formControlName="documento">
+          </div>
+          <div class="form-group col-md-6">
+            <label> <b>Teléfono</b> </label>
+            <input type="text" class="form-control" formControlName="telefono">
+          </div>
+        </div>
+        <div class="pb-2"></div>
+        <button type="submit" class="btn btn-primary" [hidden]="action=='up'">Guardar</button>
+        <button type="submit" class="btn btn-primary" [hidden]="action=='in'">Editar</button>
+      </form>
+    </div>
+  </ng-template>

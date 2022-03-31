@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/scss/bootstrap";
+
+:root {
+    --font-family-1: 'Poppins', sans-serif;
+}
+html,
+body {
+    font-family: var(--font-family-1) !important;
+}
+
+.icon-conf {
+    cursor: pointer;
+}
+
+button[action]:hover:after {
+    content: attr(action);
+}
+
+.table .thead-dark th {
+    background-color: #2d68a3 !important;
+}
